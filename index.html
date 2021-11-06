@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sound Identification Model</title>
+</head>
+<body> <center>
+    <style>
+    html {
+        height: 100%;
+        font-size: larger;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    }
+    
+    body{
+        background-image: linear-gradient(to top left, rgb(255, 235, 224), rgb(255, 200, 200)); text-align:center;
+    }</style>
+    <h1>Sound Identification Model</h1>
+    <p>Play or make a sound to make these balls spin</p>
+    <p style="font-size: small;">Classification Result</p>
+    <div class="sound-balls" style="display: block; background-image: linear-gradient(to top left, rgb(210, 210, 255), rgb(170, 170, 255)); padding: 25px;">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Football_%28soccer_ball%29.svg/1200px-Football_%28soccer_ball%29.svg.png" height="250" width="250" style="margin-right:25px;" alt="">
+        
+        
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Football_%28soccer_ball%29.svg/1200px-Football_%28soccer_ball%29.svg.png" height="250" width="250" style="margin-right:25px;" alt="">
+        
+        
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Football_%28soccer_ball%29.svg/1200px-Football_%28soccer_ball%29.svg.png" height="250" width="250" style="margin-right:25px;" alt="">
+        
+        
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Football_%28soccer_ball%29.svg/1200px-Football_%28soccer_ball%29.svg.png" height="250" width="250" style="margin-right:25px;" alt="">
+       
+    </div>
+    <br>
+    <button onclick="startClassification()" style="background-image: linear-gradient(to top left, rgb(253, 207, 182), rgb(255, 173, 173)); font-size: larger; height:75px; width:250px; border-color: rgba(0,0,0,0);" id="detectorButton">
+        Start the classification
+    </button>
+</center>
+<script>
+    function startClassification() {
+        navigator.mediaDevices.getUserMedia({audio: true});
+        classifer = ml5.soundClassifier("https://teachablemachine.withgoogle.com/models/kA4F-80yW/model.json", modelReady);
+    }
+
+    function modelReady() {
+        classifer.classify(gotResults);
+    }
+</script>
+</body>
+</html>
